@@ -1,0 +1,115 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyP5fWXpAMEC7DA4H6CC2k3l",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/nagendra2505/newtest/blob/main/circuits%20team%2043\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Q5lE0lsbB0WL",
+        "outputId": "673f0b0b-93e3-417e-8858-c578b26fc26b"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Travel Chatbot: Hello! I can help you with bus/train timings, hostel info, and recommendations.\n"
+          ]
+        }
+      ],
+      "source": [
+        "import random\n",
+        "\n",
+        "# Mock data for bus/train timings, hostel info, and restaurant/lodge recommendations\n",
+        "bus_timings = {\n",
+        "    (\"Krishna koil\", \"Madurai\"): [\"9:00 AM\", \"1:00 PM\", \"5:00 PM\"],\n",
+        "    (\"Madurai\", \"krishna koil\"): [\"10:00 AM\", \"2:00 PM\", \"6:00 PM\"],\n",
+        "}\n",
+        "\n",
+        "hostel_info = {\n",
+        "    \"rajas\": {\n",
+        "        \"check-in\": \"2:00 PM\",\n",
+        "        \"check-out\": \"11:00 AM\",\n",
+        "        \"food\": \"Breakfast and dinner included\",\n",
+        "    },\n",
+        "    \"ranis\": {\n",
+        "        \"check-in\": \"3:00 PM\",\n",
+        "        \"check-out\": \"10:00 AM\",\n",
+        "        \"food\": \" no meals included\",\n",
+        "    },\n",
+        "}\n",
+        "\n",
+        "restaurants_lodges = {\n",
+        "    \"Restaurants\": [\"KFC\", \"Domins\", \"Sodexo\"],\n",
+        "    \"Lodges\": [\"naruto\", \"bleech\", \"Klu\"],\n",
+        "}\n",
+        "\n",
+        "def get_bus_train_timings(source, destination):\n",
+        "    return bus_timings.get((source, destination), \"timings  available\")\n",
+        "\n",
+        "def get_hostel_info(hostel_name):\n",
+        "    return hostel_info.get(hostel_name, \"Hostel information not available\")\n",
+        "\n",
+        "def get_random_recommendation(category):\n",
+        "    return random.choice(restaurants_lodges.get(category, []))\n",
+        "\n",
+        "# Main chatbot loop\n",
+        "print(\"Travel Chatbot: Hello! I can help you with bus/train timings, hostel info, and recommendations.\")\n",
+        "while True:\n",
+        "    user_input = input(\"You: \").lower()\n",
+        "\n",
+        "    if \"exit\" in user_input:\n",
+        "        print(\"Travel Chatbot: Have a great trip!\")\n",
+        "        break\n",
+        "\n",
+        "    if \"bus\" in user_input or \"train\" in user_input:\n",
+        "        source = input(\"Travel Chatbot: Please enter the source: \")\n",
+        "        destination = input(\"Travel Chatbot: Please enter the destination: \")\n",
+        "        timings = get_bus_train_timings(source, destination)\n",
+        "        print(\"Travel Chatbot: Timings:\", timings)\n",
+        "\n",
+        "    elif \"hostel\" in user_input:\n",
+        "        hostel_name = input(\"Travel Chatbot: Please enter the hostel name: \")\n",
+        "        hostel_info = get_hostel_info(hostel_name)\n",
+        "        print(\"Travel Chatbot: Hostel Info:\", hostel_info)\n",
+        "\n",
+        "    elif \"food\" in user_input or \"restaurant\" in user_input or \"lodge\" in user_input:\n",
+        "        category = \"Restaurants\" if \"restaurant\" in user_input else \"Lodges\"\n",
+        "        recommendation = get_random_recommendation(category)\n",
+        "        print(\"Travel Chatbot:\", recommendation)\n",
+        "\n",
+        "    else:\n",
+        "        print(\"Travel Chatbot: I'm sorry, I didn't understand that.\")\n",
+        "\n"
+      ]
+    }
+  ]
+}
